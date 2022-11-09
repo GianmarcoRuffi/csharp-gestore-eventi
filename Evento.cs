@@ -28,7 +28,7 @@
         set
         {
             if (value == null || value < dataAttuale)
-                throw new GestoreEventiException("La data inserita è già passata.");
+                throw new GestoreEventiException("La data inserita è precedente a quella di oggi.");
             _data = value;
         }
     }
