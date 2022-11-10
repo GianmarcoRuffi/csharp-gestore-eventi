@@ -28,11 +28,11 @@
         return eventiData;
     }
 
-    public Evento CercaEvento(string titolo, DateOnly data)
+    public Evento CercaEvento(string titolo)
     {
         foreach (Evento evento in eventi)
         {
-            if (evento.Data == data && evento.Titolo == titolo)
+            if (evento.Titolo == titolo)
                 return evento;
         }
         return null;

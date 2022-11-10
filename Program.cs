@@ -27,13 +27,13 @@ int postiDisdetti = 0;
 bool disdiciPosti = true;
 Evento evento = null;
 
-
+Console.WriteLine("----------------------------");
 Console.WriteLine("Premi 1 - Stampa il numero di eventi presenti nel vostro programma eventi");
 Console.WriteLine("Premi 2 - Stampa la lista di eventi inseriti nel vostro programma");
 Console.WriteLine("Premi 3 - Inserisci una data e stampa tutti gli eventi presenti in quella data");
 Console.WriteLine("Premi 4 - Aggiungi prenotazione ad un evento");
 Console.WriteLine("Premi 5 - Disdici prenotazione ad un evento");
-Console.WriteLine("Premi 6  Eliminate tutti gli eventi dal vostro programma");
+Console.WriteLine("Premi 6 - Eliminate tutti gli eventi dal vostro programma");
 
 int sceltaUtente = Convert.ToInt32(Console.ReadLine());
 
@@ -67,43 +67,50 @@ switch (sceltaUtente)
         }
 
         break;
+
+    case 4:
+        Console.WriteLine("Inserisci il nome dell'evento per la prenotazione dei posti:");
+        string nomeEvento = Console.ReadLine();
+        programma.CercaEvento(nomeEvento);
+        InserisciPrenotazione(evento);
+        break;
 }
 
 
 // Richiesta prenotazione
-Console.Write("Vuoi prenotare dei posti? (si / no) - ");
-string inputUtente = Console.ReadLine();
+//Console.Write("Vuoi prenotare dei posti? (si / no) - ");
+//string inputUtente = Console.ReadLine();
 
-if (inputUtente == "si" || inputUtente == "SI")
+//if (inputUtente == "si" || inputUtente == "SI")
 
-    InserisciPrenotazione(evento);
+//    ;
 
- else 
+// else 
 
-    Console.WriteLine("Nessun posto prenotato.");
+//    Console.WriteLine("Nessun posto prenotato.");
 
 // Disdetta prenotazione
 
-while (disdiciPosti)
+//while (disdiciPosti)
 
-{
-    Console.Write("Vuoi disdire dei posti? (si / no) - ");
-     inputUtente = Console.ReadLine();
+//{
+//    Console.Write("Vuoi disdire dei posti? (si / no) - ");
+//     inputUtente = Console.ReadLine();
 
-    if (inputUtente == "si" || inputUtente == "SI")
+//    if (inputUtente == "si" || inputUtente == "SI")
 
-    {
-        DisdiciPrenotazione(evento);
-        disdiciPosti = true;
-    }
+//    {
+//        DisdiciPrenotazione(evento);
+//        disdiciPosti = true;
+//    }
 
-    else
+//    else
 
-    {
-        Console.Write("Nessun posto disdetto");
-        disdiciPosti = false;
-    }
-}
+//    {
+//        Console.Write("Nessun posto disdetto");
+//        disdiciPosti = false;
+//    }
+//}
 
 
 
@@ -124,8 +131,19 @@ void CreaEvento(int numeroEvento)
     Console.WriteLine("Inserisci il numero di posti totali (capienza massima): ");
     int capienzaMassima = Convert.ToInt32(Console.ReadLine());
 
-    // Oggetto Evento
-    Evento evento = new Evento(titolo, dataDateonly, capienzaMassima);
+    try
+    {
+        // Oggetto Evento
+        Evento evento = new Evento(titolo, dataDateonly, capienzaMassima);
+        programma.AggiungiEvento(evento);
+        
+    }
+    catch (GestoreEventiException e)
+    {
+        Console.WriteLine(e.Message);
+    }
+
+   
 
     // Stampa dati evento
     Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo + "'" + " da svolgersi in data " + dataDateonly + " con numero di posti totali: " + capienzaMassima);
