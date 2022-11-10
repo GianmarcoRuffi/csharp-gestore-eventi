@@ -28,12 +28,11 @@ bool disdiciPosti = true;
 Evento evento = null;
 
 Console.WriteLine("----------------------------");
-Console.WriteLine("Premi 1 - Stampa il numero di eventi presenti nel vostro programma eventi");
-Console.WriteLine("Premi 2 - Stampa la lista di eventi inseriti nel vostro programma");
-Console.WriteLine("Premi 3 - Inserisci una data e stampa tutti gli eventi presenti in quella data");
-Console.WriteLine("Premi 4 - Aggiungi prenotazione ad un evento");
-Console.WriteLine("Premi 5 - Disdici prenotazione ad un evento");
-Console.WriteLine("Premi 6 - Eliminate tutti gli eventi dal vostro programma");
+Console.WriteLine("Premi 1 - Stampa il numero di eventi presenti nel vostro programma eventi e visualizza la lista di eventi inseriti nel vostro programma");
+Console.WriteLine("Premi 2 - Inserisci una data e stampa tutti gli eventi presenti in quella data");
+Console.WriteLine("Premi 3 - Aggiungi prenotazione ad un evento");
+Console.WriteLine("Premi 4 - Disdici prenotazione ad un evento");
+Console.WriteLine("Premi 5 - Eliminate tutti gli eventi dal vostro programma");
 
 int sceltaUtente = Convert.ToInt32(Console.ReadLine());
 
@@ -43,15 +42,13 @@ switch (sceltaUtente)
     case 1:
 
         Console.WriteLine("Il numero di eventi in programma è: " + programma.NumeroEventi());
-        break;
-
-    case 2:
-
-        Console.WriteLine("Ecco il tuo programma eventi");
+        Console.WriteLine("");
+        Console.WriteLine("Ecco il tuo programma eventi:");
+        Console.WriteLine("");
         Console.WriteLine(programma.ToString());
         break;
 
-    case 3:
+    case 2:
 
         try
         {
@@ -68,7 +65,7 @@ switch (sceltaUtente)
 
         break;
 
-    case 4:
+    case 3:
         Console.WriteLine("Inserisci il nome dell'evento per la prenotazione dei posti:");
         string nomeEvento = Console.ReadLine();
         programma.CercaEvento(nomeEvento);
