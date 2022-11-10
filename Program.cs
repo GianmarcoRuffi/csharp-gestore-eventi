@@ -34,7 +34,6 @@ Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo +"'" + "
 Console.Write("Vuoi prenotare dei posti? (si / no) - ");
 string inputUtente = Console.ReadLine();
 
-
 if (inputUtente == "si" || inputUtente == "SI")
 
     InserisciPrenotazione(evento);
@@ -43,9 +42,7 @@ if (inputUtente == "si" || inputUtente == "SI")
 
     Console.WriteLine("Nessun posto prenotato.");
 
-
 // Disdetta prenotazione
-
 
 while (disdiciPosti)
 
@@ -59,7 +56,6 @@ while (disdiciPosti)
         DisdiciPrenotazione(evento);
         disdiciPosti = true;
     }
-
 
     else
 
