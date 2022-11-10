@@ -128,7 +128,7 @@ void CreaEvento(int numeroEvento)
 {
     try
     {// titolo evento
-        Console.WriteLine("Inserisci il nome dell'evento: ");
+        Console.WriteLine("Inserisci il nome dell'evento numero {0} : ");
     string titolo = Console.ReadLine();
     // data evento
     Console.WriteLine("Inserisci la data dell'evento (in formato gg/mm/yyyy): ");
@@ -176,6 +176,8 @@ void InserisciPrenotazione(Evento evento)
         {
             Console.WriteLine("Errore di inserimento");
         }
+
+
 
     }
 
