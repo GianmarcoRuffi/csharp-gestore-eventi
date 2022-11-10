@@ -52,10 +52,12 @@ switch (sceltaUtente)
 
         try
         {
-            Console.WriteLine("Inserisci una data per sapere gli eventi in programma (gg/mm/yyyy)");
+            Console.WriteLine("Inserisci una data per sapere gli eventi in programma nella data specificata (gg/mm/yyyy)");
             string dataStringa = Console.ReadLine();
             DateOnly data = DateOnly.Parse(dataStringa);
             List<Evento> eventi = programma.CercaDataEventi(data);
+            Console.WriteLine("");
+            Console.WriteLine("Gli eventi in programma sono: ");
             Console.WriteLine(ProgrammaEventi.StampaListaEventi(eventi));
         }
         catch (GestoreEventiException)
