@@ -24,6 +24,7 @@ Evento evento = new Evento(titolo, dataDateonly, capienzaMassima);
 
 int postiPrenotati = 0;
 int postiDisdetti = 0;
+bool disdiciPosti = true;
 
 
 // Stampa dati evento
@@ -38,7 +39,7 @@ if (inputUtente == "si" || inputUtente == "SI")
 
     InserisciPrenotazione(evento);
 
-else
+ else 
 
     Console.WriteLine("Nessun posto prenotato.");
 
@@ -46,22 +47,26 @@ else
 // Disdetta prenotazione
 
 
-bool disdiciPosti = true;
-
 while (disdiciPosti)
 
 {
     Console.Write("Vuoi disdire dei posti? (si / no) - ");
-    inputUtente = Console.ReadLine();
+    string inputDisdetta = Console.ReadLine();
 
-    if (inputUtente == "si" || inputUtente == "SI")
+    if (inputDisdetta == "si" || inputDisdetta == "SI")
 
+    {
         DisdiciPrenotazione(evento);
+        disdiciPosti = true;
+    }
+
 
     else
 
+    {
         Console.Write("Nessun posto disdetto");
-    disdiciPosti = false;
+        disdiciPosti = false;
+    }
 }
 
 
