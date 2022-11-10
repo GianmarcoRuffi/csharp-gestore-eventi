@@ -5,7 +5,7 @@ using System;
 // Creazione Programma di Eventi
 
 Console.WriteLine("Compilare i campi richiesti per creare il tuo programma di eventi");
-Console.WriteLine("----------------------------------");
+Console.WriteLine("----------------------------------------------");
 
 
 Console.WriteLine("Inserisci il nome del tuo programma Eventi:");
@@ -18,7 +18,7 @@ ProgrammaEventi programma = new ProgrammaEventi(nomeProgramma);
 
 for (int i = 1; i <= numeroEventi; i++)
 {
-    Console.WriteLine("----------------------------");
+    Console.WriteLine("----------------------------------------------");
     CreaEvento(i);
 }
 
@@ -31,12 +31,14 @@ bool continua = true;
 
 do
 
-{ Console.WriteLine("----------------------------");
+{
+    Console.WriteLine("----------------------------------------------");
     Console.WriteLine("Premi 1 - Stampa il numero di eventi presenti nel vostro programma eventi e visualizza la lista di eventi inseriti nel vostro programma");
     Console.WriteLine("Premi 2 - Inserisci una data e stampa tutti gli eventi presenti in quella data");
     Console.WriteLine("Premi 3 - Aggiungi prenotazione ad un evento");
     Console.WriteLine("Premi 4 - Disdici prenotazione ad un evento");
     Console.WriteLine("Premi 5 - Eliminate tutti gli eventi dal vostro programma");
+    Console.WriteLine("----------------------------------------------");
 
     int sceltaUtente = Convert.ToInt32(Console.ReadLine());
 
@@ -50,6 +52,7 @@ do
             Console.WriteLine("Ecco il tuo programma eventi:");
             Console.WriteLine("");
             Console.WriteLine(programma.ToString());
+            Console.WriteLine("----------------------------------------------");
             break;
 
         case 2:
@@ -63,6 +66,7 @@ do
                 Console.WriteLine("");
                 Console.WriteLine("Gli eventi in programma sono: ");
                 Console.WriteLine(ProgrammaEventi.StampaListaEventi(eventi));
+                Console.WriteLine("----------------------------------------------");
             }
             catch (GestoreEventiException)
             {
@@ -72,47 +76,44 @@ do
             break;
 
         case 3:
-            Console.WriteLine("Inserisci il nome dell'evento per la prenotazione dei posti:");
-            string nomeEvento1 = Console.ReadLine();
-            Evento evento1 = programma.CercaEvento(nomeEvento1);
-            InserisciPrenotazione(evento1);
+            try
+            {
+                Console.WriteLine("Inserisci il nome dell'evento per la prenotazione dei posti:");
+                string nomeEvento1 = Console.ReadLine();
+                Evento evento1 = programma.CercaEvento(nomeEvento1);
+                InserisciPrenotazione(evento1);
+                Console.WriteLine("----------------------------------------------");
+            }
+            catch (GestoreEventiException)
+            {
+                Console.WriteLine("Errore di inserimento");
+            }
+
             break;
 
 
         case 4:
-            Console.WriteLine("Inserisci il nome dell'evento per la cancellazione delle prenotazioni:");
-            string nomeEvento2 = Console.ReadLine();
-            Evento evento2 = programma.CercaEvento(nomeEvento2);
-            DisdiciPrenotazione(evento2);
+            try
+            {
+                Console.WriteLine("Inserisci il nome dell'evento per la cancellazione delle prenotazioni:");
+                string nomeEvento2 = Console.ReadLine();
+                Evento evento2 = programma.CercaEvento(nomeEvento2);
+                DisdiciPrenotazione(evento2);
+                Console.WriteLine("----------------------------------------------");
+            }
+            catch (GestoreEventiException)
+            {
+                Console.WriteLine("Errore di inserimento");
+            }
             break;
 
         case 5:
             programma.SvuotaListaEventi();
+            Console.WriteLine("Tutti gli eventi sono stati cancellati!");
             continua = false;
             break;
     }
 } while (continua);
-
-
-
-
-// Disdetta prenotazione
-
-
-
-//    {
-//        DisdiciPrenotazione(evento);
-//        disdiciPosti = true;
-//    }
-
-//    else
-
-//    {
-//        Console.Write("Nessun posto disdetto");
-//        disdiciPosti = false;
-//    }
-//}
-
 
 
 /////// Funzioni ///////////
@@ -121,8 +122,10 @@ do
 // Funzione Crea evento
 void CreaEvento(int numeroEvento)
 
-{   // titolo evento
-    Console.WriteLine("Inserisci il nome dell'evento: ");
+{
+    try
+    {// titolo evento
+        Console.WriteLine("Inserisci il nome dell'evento: ");
     string titolo = Console.ReadLine();
     // data evento
     Console.WriteLine("Inserisci la data dell'evento (in formato gg/mm/yyyy): ");
@@ -132,22 +135,24 @@ void CreaEvento(int numeroEvento)
     Console.WriteLine("Inserisci il numero di posti totali (capienza massima): ");
     int capienzaMassima = Convert.ToInt32(Console.ReadLine());
 
-    try
-    {
+  
         // Oggetto Evento
         Evento evento = new Evento(titolo, dataDateonly, capienzaMassima);
         programma.AggiungiEvento(evento);
-        
+
+        // Stampa dati evento
+        Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo + "'" + " da svolgersi in data " + dataDateonly + " con numero di posti totali: " + capienzaMassima);
+
     }
+
     catch (GestoreEventiException e)
     {
-        Console.WriteLine(e.Message);
+        Console.WriteLine("Errore");
     }
 
    
 
-    // Stampa dati evento
-    Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo + "'" + " da svolgersi in data " + dataDateonly + " con numero di posti totali: " + capienzaMassima);
+
 
 }
 
@@ -184,8 +189,8 @@ void InserisciPrenotazione(Evento evento)
 
 void DisdiciPrenotazione(Evento evento)
 {
-    
-        Console.Write("Indica il numero dei posti da disdire: ");
+    Console.WriteLine("Numero di posti prenotati: " + evento.PostiPrenotati);
+    Console.Write("Indica il numero dei posti da disdire: ");
 
     { try
             {
