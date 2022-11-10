@@ -35,4 +35,16 @@
         Relatore = relatore;
         Prezzo = prezzo;
     }
+
+    public string PrezzoFormattato()
+    {
+        string prezzoFormattato = _prezzo.ToString("0.00");
+
+        return prezzoFormattato;
+    }
+    public override string ToString()
+    {
+        return Data.ToString("dd/MM/yyyy") + " - " + Titolo + " - " + Relatore + " - " + PrezzoFormattato() + " € ";
+    }
+
 }
