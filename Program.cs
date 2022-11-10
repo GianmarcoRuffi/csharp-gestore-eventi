@@ -51,9 +51,9 @@ while (disdiciPosti)
 
 {
     Console.Write("Vuoi disdire dei posti? (si / no) - ");
-    string inputDisdetta = Console.ReadLine();
+     inputUtente = Console.ReadLine();
 
-    if (inputDisdetta == "si" || inputDisdetta == "SI")
+    if (inputUtente == "si" || inputUtente == "SI")
 
     {
         DisdiciPrenotazione(evento);
