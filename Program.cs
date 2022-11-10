@@ -2,33 +2,73 @@
 
 using System;
 
-// Creazione Evento
+// Creazione Programma di Eventi
 
-Console.WriteLine("Compilare i campi richiesti per creare l'evento");
+Console.WriteLine("Compilare i campi richiesti per creare il tuo programma di eventi");
 Console.WriteLine("----------------------------------");
 
-// titolo evento
-Console.WriteLine("Inserisci il nome dell'evento: ");
-string titolo = Console.ReadLine();
-// data evento
-Console.WriteLine("Inserisci la data dell'evento (in formato gg/mm/yyyy): ");
-string dataEvento = Console.ReadLine();
-DateOnly dataDateonly = DateOnly.Parse(dataEvento);
-// capienza massima posti
-Console.WriteLine("Inserisci il numero di posti totali (capienza massima): ");
-int capienzaMassima = Convert.ToInt32(Console.ReadLine());
 
-// Oggetto Evento
-Evento evento = new Evento(titolo, dataDateonly, capienzaMassima);
+Console.WriteLine("Inserisci il nome del tuo programma Eventi:");
+string nomeProgramma = Console.ReadLine();
+Console.WriteLine("inserisci il numero di eventi da inserire:");
+int numeroEventi = Convert.ToInt32(Console.ReadLine());
+ProgrammaEventi programma = new ProgrammaEventi(nomeProgramma);
 
+//
+
+for (int i = 1; i <= numeroEventi; i++)
+{
+    Console.WriteLine("----------------------------");
+    CreaEvento(i);
+}
 
 int postiPrenotati = 0;
 int postiDisdetti = 0;
 bool disdiciPosti = true;
+Evento evento = null;
 
 
-// Stampa dati evento
-Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo +"'" + " da svolgersi in data " + dataDateonly + " con numero di posti totali: " + capienzaMassima);
+Console.WriteLine("Premi 1 - Stampa il numero di eventi presenti nel vostro programma eventi");
+Console.WriteLine("Premi 2 - Stampa la lista di eventi inseriti nel vostro programma");
+Console.WriteLine("Premi 3 - Inserisci una data e stampa tutti gli eventi presenti in quella data");
+Console.WriteLine("Premi 4 - Aggiungi prenotazione ad un evento");
+Console.WriteLine("Premi 5 - Disdici prenotazione ad un evento");
+Console.WriteLine("Premi 6  Eliminate tutti gli eventi dal vostro programma");
+
+int sceltaUtente = Convert.ToInt32(Console.ReadLine());
+
+switch (sceltaUtente)
+
+{
+    case 1:
+
+        Console.WriteLine("Il numero di eventi in programma è: " + programma.NumeroEventi());
+        break;
+
+    case 2:
+
+        Console.WriteLine("Ecco il tuo programma eventi");
+        Console.WriteLine(programma.ToString());
+        break;
+
+    case 3:
+
+        try
+        {
+            Console.WriteLine("Inserisci una data per sapere gli eventi in programma (gg/mm/yyyy)");
+            string dataStringa = Console.ReadLine();
+            DateOnly data = DateOnly.Parse(dataStringa);
+            List<Evento> eventi = programma.CercaDataEventi(data);
+            Console.WriteLine(ProgrammaEventi.StampaListaEventi(eventi));
+        }
+        catch (GestoreEventiException)
+        {
+            Console.WriteLine("Errore di inserimento");
+        }
+
+        break;
+}
+
 
 // Richiesta prenotazione
 Console.Write("Vuoi prenotare dei posti? (si / no) - ");
@@ -68,6 +108,30 @@ while (disdiciPosti)
 
 
 /////// Funzioni ///////////
+
+
+// Funzione Crea evento
+void CreaEvento(int numeroEvento)
+
+{   // titolo evento
+    Console.WriteLine("Inserisci il nome dell'evento: ");
+    string titolo = Console.ReadLine();
+    // data evento
+    Console.WriteLine("Inserisci la data dell'evento (in formato gg/mm/yyyy): ");
+    string dataEvento = Console.ReadLine();
+    DateOnly dataDateonly = DateOnly.Parse(dataEvento);
+    // capienza massima posti
+    Console.WriteLine("Inserisci il numero di posti totali (capienza massima): ");
+    int capienzaMassima = Convert.ToInt32(Console.ReadLine());
+
+    // Oggetto Evento
+    Evento evento = new Evento(titolo, dataDateonly, capienzaMassima);
+
+    // Stampa dati evento
+    Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo + "'" + " da svolgersi in data " + dataDateonly + " con numero di posti totali: " + capienzaMassima);
+
+}
+
 
 // Funzione Prenotazione posti //
 
@@ -120,6 +184,6 @@ void DisdiciPrenotazione(Evento evento)
         evento.DisdiciPosti(postiDisdetti);
         Console.WriteLine("Numero di posti prenotati: " + evento.PostiPrenotati);
         Console.WriteLine("Numero di posti disponibili: " + (evento.CapienzaMassimaEvento - evento.PostiPrenotati));
-    
- 
-}
+
+
+        }
