@@ -22,10 +22,7 @@ for (int i = 1; i <= numeroEventi; i++)
     CreaEvento(i);
 }
 
-int postiPrenotati = 0;
 int postiDisdetti = 0;
-bool disdiciPosti = true;
-Evento evento = null;
 bool continua = true;
 
 
@@ -144,7 +141,7 @@ void CreaEvento(int numeroEvento)
         programma.AggiungiEvento(evento);
 
         // Stampa dati evento
-        Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo + "'" + " da svolgersi in data " + dataDateonly + " con numero di posti totali: " + capienzaMassima);
+        Console.WriteLine("E' stato creato il seguente evento: " + "'" + titolo + "'" + " da svolgersi in data: " + dataDateonly + " con numero di posti totali: " + capienzaMassima);
 
     }
 
@@ -163,7 +160,7 @@ void InserisciPrenotazione(Evento evento)
     {
         try
         {
-            int postiPrenotati = Convert.ToInt32(Console.ReadLine());
+            postiPrenotati = Convert.ToInt32(Console.ReadLine());
             evento.PrenotaPosti(postiPrenotati);
             Console.WriteLine("Numero di posti prenotati: " + evento.PostiPrenotati);
             Console.WriteLine("Numero di posti disponibili: " + (evento.CapienzaMassimaEvento - evento.PostiPrenotati));

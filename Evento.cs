@@ -27,7 +27,7 @@
         }
         set
         {
-            if (value == null || value < dataAttuale)
+            if (value < dataAttuale)
                 throw new GestoreEventiException("La data inserita è precedente a quella di oggi.");
             _data = value;
         }
@@ -40,7 +40,7 @@
         }
         private set
         {
-            if (value == null || value <= 0)
+            if (value <= 0)
                 throw new GestoreEventiException("La capienza massima deve essere maggiore di 0.");
             _capienzaMassimaEvento = value;
         }
@@ -49,7 +49,7 @@
     public int PostiPrenotati
     {
         get
-        {
+        {   
             return _postiPrenotati;
         }
         private set
