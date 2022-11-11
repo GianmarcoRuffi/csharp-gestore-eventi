@@ -189,7 +189,7 @@ void DisdiciPrenotazione(Evento evento)
 
     { try
             {
-            int postiDisdetti = Convert.ToInt32(Console.ReadLine());
+            postiDisdetti = Convert.ToInt32(Console.ReadLine());
 
         }
             catch (FormatException)
