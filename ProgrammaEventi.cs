@@ -38,7 +38,7 @@
         return null;
     }
 
-    public static string StampaListaEventi(List<Evento> eventi)
+    public static string ListaEventi(List<Evento> eventi)
     {
         string stampa = "";
 

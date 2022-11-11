@@ -66,7 +66,7 @@ do
                 List<Evento> eventi = programma.CercaDataEventi(data);
                 Console.WriteLine("");
                 Console.WriteLine("Gli eventi in programma sono: ");
-                Console.WriteLine(ProgrammaEventi.StampaListaEventi(eventi));
+                Console.WriteLine(ProgrammaEventi.ListaEventi(eventi));
          
             }
             catch (Exception)
