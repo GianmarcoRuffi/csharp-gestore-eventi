@@ -128,7 +128,7 @@ void CreaEvento(int numeroEvento)
 {
     try
     {// titolo evento
-        Console.WriteLine("Inserisci il nome dell'evento numero {0} : ");
+        Console.WriteLine("Inserisci il nome dell'evento: ");
     string titolo = Console.ReadLine();
     // data evento
     Console.WriteLine("Inserisci la data dell'evento (in formato gg/mm/yyyy): ");
