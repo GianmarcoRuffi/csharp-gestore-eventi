@@ -160,7 +160,7 @@ void InserisciPrenotazione(Evento evento)
     {
         try
         {
-            postiPrenotati = Convert.ToInt32(Console.ReadLine());
+            int postiPrenotati = Convert.ToInt32(Console.ReadLine());
             evento.PrenotaPosti(postiPrenotati);
             Console.WriteLine("Numero di posti prenotati: " + evento.PostiPrenotati);
             Console.WriteLine("Numero di posti disponibili: " + (evento.CapienzaMassimaEvento - evento.PostiPrenotati));
@@ -189,7 +189,7 @@ void DisdiciPrenotazione(Evento evento)
 
     { try
             {
-            postiDisdetti = Convert.ToInt32(Console.ReadLine());
+            int postiDisdetti = Convert.ToInt32(Console.ReadLine());
 
         }
             catch (FormatException)
